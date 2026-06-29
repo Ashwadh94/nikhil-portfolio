@@ -1,4 +1,5 @@
 {
+  "outputDirectory": ".",
   "rewrites": [
     { "source": "/", "destination": "/nikhil-vemuri-portfolio-v5.html" },
     { "source": "/casestudy", "destination": "/nikhil-vemuri-casestudy-v2.html" },
