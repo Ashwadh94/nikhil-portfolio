@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikhil Vemuri — Senior UX Designer Resume</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    line-height: 1.52;
+    color: #111;
+    background: #fff;
+    max-width: 8.5in;
+    margin: 0 auto;
+    padding: 0.5in 0.65in 0.55in;
+  }
+
+  /* ── HEADER ── */
+  .hdr {
+    padding-bottom: 10px;
+    border-bottom: 2.5px solid #1a4fa0;
+    margin-bottom: 14px;
+  }
+
+  .hdr-name {
+    font-size: 22pt;
+    font-weight: 900;
+    color: #111;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .hdr-title {
+    font-size: 10.5pt;
+    font-weight: 400;
+    color: #555;
+    margin-bottom: 6px;
+  }
+
+  .hdr-contact {
+    font-size: 8.5pt;
+    color: #333;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 4px;
+    align-items: center;
+  }
+
+  .hdr-contact a { color: #1a4fa0; text-decoration: none; }
+  .hdr-contact .sep { color: #bbb; margin: 0 5px; }
+
+  /* ── TWO-COLUMN BODY ── */
+  .body-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .col-left {
+    width: 63%;
+    padding-right: 20px;
+    vertical-align: top;
+    border-right: 1px solid #dde3f0;
+  }
+
+  .col-right {
+    width: 37%;
+    padding-left: 18px;
+    vertical-align: top;
+  }
+
+  /* ── SHARED SECTION ── */
+  .sec { margin-bottom: 13px; }
+
+  .sec-head {
+    font-size: 8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    color: #1a4fa0;
+    border-bottom: 1px solid #d0d8e8;
+    padding-bottom: 3px;
+    margin-bottom: 8px;
+  }
+
+  /* ── SUMMARY ── */
+  .summary {
+    font-size: 9.5pt;
+    color: #222;
+    line-height: 1.6;
+  }
+
+  /* ── JOB ── */
+  .job { margin-bottom: 11px; }
+
+  .job-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .job-title { font-size: 10pt; font-weight: 700; color: #111; }
+
+  .job-dates {
+    font-size: 8.5pt;
+    color: #555;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .job-co {
+    font-size: 9pt;
+    color: #444;
+    margin: 1px 0 5px 0;
+  }
+
+  .job-co .co-name { font-weight: 700; color: #222; }
+  .job-co .co-note { font-style: italic; color: #666; }
+
+  .achieve-label {
+    font-size: 7.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #1a4fa0;
+    margin: 6px 0 3px 0;
+  }
+
+  .job ul {
+    padding-left: 14px;
+    list-style: disc;
+  }
+
+  .job ul li {
+    font-size: 9.5pt;
+    color: #222;
+    margin-bottom: 2px;
+    line-height: 1.48;
+  }
+
+  .job ul li strong { color: #111; font-weight: 700; }
+
+  /* ── EDUCATION (left col) ── */
+  .edu-item { margin-bottom: 7px; }
+
+  .edu-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .edu-deg { font-size: 9.5pt; font-weight: 700; color: #111; }
+  .edu-dates { font-size: 8.5pt; color: #555; white-space: nowrap; flex-shrink: 0; }
+  .edu-school { font-size: 9pt; color: #444; }
+
+  /* ── RIGHT: SKILLS ── */
+  .s-category { margin-bottom: 8px; }
+
+  .s-cat-name {
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 3px;
+  }
+
+  .s-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px 4px;
+  }
+
+  .s-tag {
+    font-size: 7.5pt;
+    color: #333;
+    background: #eef1f8;
+    border: 1px solid #d0d8e8;
+    border-radius: 3px;
+    padding: 1px 6px;
+    white-space: nowrap;
+    line-height: 1.7;
+  }
+
+  /* ── RIGHT: CERTS ── */
+  .cert-item { margin-bottom: 7px; }
+  .cert-name { font-size: 9pt; font-weight: 700; color: #111; line-height: 1.4; }
+  .cert-meta { font-size: 8pt; color: #555; }
+
+  /* ── RIGHT: AWARDS ── */
+  .award-item { margin-bottom: 7px; }
+  .award-name { font-size: 9pt; font-weight: 700; color: #111; line-height: 1.4; }
+  .award-meta { font-size: 8pt; color: #555; }
+
+  /* ── PRINT / PDF ── */
+  @media print {
+    body { padding: 0.45in 0.6in; }
+    a { color: #1a4fa0 !important; text-decoration: none !important; }
+    .hdr { position: running(header); }
+    .body-table { page-break-inside: auto; }
+    tr { page-break-inside: avoid; }
+    .job { page-break-inside: avoid; }
+    .sec { page-break-inside: avoid; }
+  }
+
+  @page {
+    size: A4;
+    margin: 0.5in 0.65in;
+  }
+
+  /* WeasyPrint named page for repeating header */
+  @page {
+    @top-center {
+      content: "";
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-name">NIKHIL VEMURI</div>
+  <div class="hdr-title">Senior UX Designer &nbsp;·&nbsp; Interactive Design &nbsp;·&nbsp; Enterprise AI Products &nbsp;·&nbsp; Design Systems &nbsp;·&nbsp; Accessibility</div>
+  <div class="hdr-contact">
+    <span>Hyderabad, Telangana, India</span>
+    <span class="sep">|</span>
+    <a href="https://linkedin.com/in/nikhilvemuri94">linkedin.com/in/nikhilvemuri94</a>
+    <span class="sep">|</span>
+    <a href="https://behance.net/Ash_Nikks">behance.net/Ash_Nikks</a>
+  </div>
+</header>
+
+<!-- TWO-COLUMN BODY -->
+<table class="body-table">
+<tr>
+
+  <!-- LEFT COLUMN -->
+  <td class="col-left">
+
+    <!-- PROFESSIONAL SUMMARY -->
+    <section class="sec">
+      <div class="sec-head">Professional Summary</div>
+      <p class="summary">
+        Senior UX and Interactive Designer with <strong>10+ years of experience</strong> designing complex digital products across enterprise AI, DevOps, analytics, and healthcare-regulated environments. Proven ability to go beyond static UI — creating immersive, interactive experiences and modular content systems that engage across multiple formats and platforms. Deep expertise in design systems, accessibility (WCAG 2.1 AA &amp; Section 508 certified), and cross-functional collaboration across global teams. Healthcare domain experience includes delivering HIPAA-compliant digital applications for Tenet Healthcare, UnitedHealth Group, and Optum. Award-winning designer (Hermes International Gold, 2018) with a consistent record of translating complex requirements into engaging, compliant, and scalable interactive experiences.
+      </p>
+    </section>
+
+    <!-- ORGANIZATIONAL EXPERIENCE -->
+    <section class="sec">
+      <div class="sec-head">Organizational Experience</div>
+
+      <!-- OpenText -->
+      <div class="job">
+        <div class="job-top">
+          <span class="job-title">Senior UX Designer</span>
+          <span class="job-dates">Nov 2023 – Present</span>
+        </div>
+        <div class="job-co">
+          <span class="co-name">OpenText</span> &nbsp;·&nbsp;
+          <span class="co-note">Hyderabad, India · Enterprise DevOps &amp; AI Products</span>
+        </div>
+        <ul>
+          <li>Own end-to-end UX design for an AI-powered automated testing suite — translating complex ML workflows into progressive, step-by-step experiences with clear human/AI decision attribution.</li>
+          <li>Contributed to an evolving &amp; scalable design system with reusable component libraries and design tokens, enabling consistent interactive patterns across product modules.</li>
+          <li>Align interactive designs while balancing technical constraints with user and business needs, collaborating with product managers, engineering leads, and QA stakeholders throughout delivery.</li>
+          <li>Ran accessibility heuristic reviews against WCAG 2.1 AA criteria, flagging and redesigning non-compliant components across data-heavy dashboards and dynamic content areas.</li>
+          <li>Produce interactive prototypes and annotated user flows for usability testing sessions; facilitate AI-driven UX ideation workshops (Tank it or Bank it) to validate product concepts with cross-functional teams.</li>
+        </ul>
+        <div class="achieve-label">Key Achievements</div>
+        <ul>
+          <li>Led redesign of a legacy enterprise testing platform — restructuring IA, interaction flows, and component architecture, improving SUS score from 52 to 86.</li>
+          <li>Drove 85% reduction in test setup time and 60% faster test cycles through UX redesign of the AI-assisted configuration and execution flow.</li>
+          <li>Reduced manual test retries by 40% by designing a transparent AI execution plan review step that built user trust and reduced error-driven interruptions.</li>
+        </ul>
+      </div>
+
+      <!-- Deloitte -->
+      <div class="job">
+        <div class="job-top">
+          <span class="job-title">Designer 2 — UX/UI &amp; Interactive</span>
+          <span class="job-dates">Apr 2020 – Aug 2023</span>
+        </div>
+        <div class="job-co">
+          <span class="co-name">Deloitte India</span> &nbsp;·&nbsp;
+          <span class="co-note">Enterprise SaaS · Life Sciences &amp; Technology Clients</span>
+        </div>
+        <ul>
+          <li>Led UX and interactive design for <strong>ChangeScout</strong>, a proprietary change management SaaS platform — creating modular content components, interactive multi-step workflows, and responsive layouts within established brand frameworks.</li>
+          <li>Designed complex interactive experiences within <strong>Salesforce Lightning</strong>, balancing platform constraints with intuitive interaction patterns for global enterprise users.</li>
+          <li>Contributed to a component-based design system with documented interaction states and reusable assets, standardising patterns across cross-functional teams.</li>
+          <li>Ran usability testing and stakeholder research sessions to validate design decisions; iterated rapidly across content formats in an Agile environment.</li>
+          <li>Collaborated with global teams across business, technology, and Life Sciences consulting clients — regularly presenting interactive design rationale to senior stakeholders.</li>
+        </ul>
+      </div>
+
+      <!-- InRhythm -->
+      <div class="job">
+        <div class="job-top">
+          <span class="job-title">UI/UX Designer 2</span>
+          <span class="job-dates">Sep 2018 – Apr 2020</span>
+        </div>
+        <div class="job-co">
+          <span class="co-name">InRhythm Solutions</span> &nbsp;·&nbsp;
+          <span class="co-note">Enterprise Analytics &amp; Mobile Products</span>
+        </div>
+        <ul>
+          <li>Led UX design for <strong>MobileMetrics</strong>, an enterprise analytics product — designing data-heavy interactive dashboards with clear visual hierarchy for non-technical stakeholders.</li>
+          <li>Created interactive wireframes and high-fidelity prototypes for analytics visualisation features; collaborated daily with developers in Agile sprints to ensure accurate interactive implementation.</li>
+          <li>Designed modular, reusable interface components and responsive layouts adaptable across device breakpoints.</li>
+        </ul>
+      </div>
+
+      <!-- PurpleTalk -->
+      <div class="job">
+        <div class="job-top">
+          <span class="job-title">UI/UX Designer</span>
+          <span class="job-dates">May 2015 – Aug 2018</span>
+        </div>
+        <div class="job-co">
+          <span class="co-name">PurpleTalk</span> &nbsp;·&nbsp;
+          <span class="co-note">Healthcare, Life Sciences &amp; IoT · Mobile &amp; Web</span>
+        </div>
+        <ul>
+          <li>Designed <strong>HIPAA-compliant applications and websites</strong> for <strong>Tenet Healthcare, UnitedHealth Group (UHG), and Optum</strong> — covering patient portals, clinical workflows, and provider-facing tools within strictly regulated environments.</li>
+          <li>Ensured full <strong>Section 508 compliance</strong> across all healthcare deliverables, applying accessibility standards pragmatically without compromising interaction quality.</li>
+          <li>Designed an IoT application combining device interaction, animated states, and immersive visual storytelling — won the <strong>Hermes International Design Award 2018 (Gold Category)</strong>.</li>
+          <li>Delivered end-to-end interactive experiences for mobile and web products across multiple client verticals, balancing creative direction with compliance and technical constraints throughout.</li>
+        </ul>
+      </div>
+
+      <!-- Intern -->
+      <div class="job">
+        <div class="job-top">
+          <span class="job-title">UI Design Intern</span>
+          <span class="job-dates">Dec 2014 – May 2015</span>
+        </div>
+        <div class="job-co">
+          <span class="co-name">PurpleTalk</span>
+        </div>
+        <ul>
+          <li>Supported front-end UI development and visual design using HTML5 and CSS in production-grade web interfaces.</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- EDUCATION (left column, below experience) -->
+    <section class="sec">
+      <div class="sec-head">Education</div>
+
+      <div class="edu-item">
+        <div class="edu-top">
+          <span class="edu-deg">B.Tech, Information Technology</span>
+          <span class="edu-dates">2011 – 2015</span>
+        </div>
+        <div class="edu-school">Jawaharlal Nehru Technological University, Hyderabad</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-top">
+          <span class="edu-deg">Intermediate (M.P.C.)</span>
+          <span class="edu-dates">2009 – 2011</span>
+        </div>
+        <div class="edu-school">Sri Chaitanya College of Education</div>
+      </div>
+
+    </section>
+
+  </td>
+
+  <!-- RIGHT COLUMN -->
+  <td class="col-right">
+
+    <!-- SKILLS & TOOLS -->
+    <section class="sec">
+      <div class="sec-head">Skills &amp; Tools</div>
+
+      <div class="s-category">
+        <div class="s-cat-name">UX &amp; Interaction Design</div>
+        <div class="s-tags">
+          <span class="s-tag">User Research</span>
+          <span class="s-tag">Usability Testing</span>
+          <span class="s-tag">Interaction Design</span>
+          <span class="s-tag">Information Architecture</span>
+          <span class="s-tag">Wireframing</span>
+          <span class="s-tag">Prototyping</span>
+          <span class="s-tag">Visual Storytelling</span>
+          <span class="s-tag">Heuristic Evaluation</span>
+          <span class="s-tag">Immersive UX</span>
+          <span class="s-tag">Interactive Storytelling</span>
+          <span class="s-tag">Responsive Design</span>
+          <span class="s-tag">Modular Content Systems</span>
+          <span class="s-tag">Design Systems</span>
+        </div>
+      </div>
+
+      <div class="s-category">
+        <div class="s-cat-name">Tools</div>
+        <div class="s-tags">
+          <span class="s-tag">Figma</span>
+          <span class="s-tag">Adobe Illustrator</span>
+          <span class="s-tag">Adobe Photoshop</span>
+          <span class="s-tag">Adobe XD</span>
+          <span class="s-tag">HTML5</span>
+          <span class="s-tag">CSS</span>
+        </div>
+      </div>
+
+      <div class="s-category">
+        <div class="s-cat-name">AI &amp; Emerging Practice</div>
+        <div class="s-tags">
+          <span class="s-tag">AI-Powered Product Design</span>
+          <span class="s-tag">Human-Centered AI</span>
+          <span class="s-tag">AI Ideation Facilitation</span>
+        </div>
+      </div>
+
+      <div class="s-category">
+        <div class="s-cat-name">Accessibility &amp; Compliance</div>
+        <div class="s-tags">
+          <span class="s-tag">WCAG 2.1 AA</span>
+          <span class="s-tag">Section 508</span>
+          <span class="s-tag">HIPAA-Compliant Design</span>
+          <span class="s-tag">Accessibility Audits</span>
+        </div>
+      </div>
+
+      <div class="s-category">
+        <div class="s-cat-name">Platforms &amp; Collaboration</div>
+        <div class="s-tags">
+          <span class="s-tag">Salesforce Lightning</span>
+          <span class="s-tag">DevOps &amp; QA Platforms</span>
+          <span class="s-tag">Analytics Dashboards</span>
+          <span class="s-tag">SaaS Products</span>
+          <span class="s-tag">Stakeholder Facilitation</span>
+          <span class="s-tag">Agile / Scrum</span>
+          <span class="s-tag">Design QA</span>
+          <span class="s-tag">Global Teams</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="sec">
+      <div class="sec-head">Certifications</div>
+
+      <div class="cert-item">
+        <div class="cert-name">AI for Human-Centered Design</div>
+        <div class="cert-meta">Human Factors International (HFI) · 2026</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="cert-name">Human-Computer Interaction (HCI)</div>
+        <div class="cert-meta">Interaction Design Foundation (IDF) · Jan 2020</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="cert-name">Usability for the Web</div>
+        <div class="cert-meta">Interaction Design Foundation (IDF) · Jan 2020</div>
+      </div>
+
+      <div class="cert-item">
+        <div class="cert-name">Web Design Accessibility — WCAG</div>
+        <div class="cert-meta">Udemy · Apr 2026</div>
+      </div>
+
+    </section>
+
+    <!-- AWARDS -->
+    <section class="sec">
+      <div class="sec-head">Awards &amp; Recognition</div>
+
+      <div class="award-item">
+        <div class="award-name">Hermes International Design Award — Gold</div>
+        <div class="award-meta">IoT Application UI/UX · PurpleTalk · 2018</div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-name">You've Got Spark Award</div>
+        <div class="award-meta">PurpleTalk · August 2017</div>
+      </div>
+
+    </section>
+
+  </td>
+</tr>
+</table>
+
+</body>
+</html>
