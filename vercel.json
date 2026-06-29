@@ -1,1 +1,9 @@
-{ "rewrites": [{ "source": "/(.*)", "destination": "/" }] }
+{
+  "rewrites": [
+    { "source": "/", "destination": "/nikhil-vemuri-portfolio-v5.html" },
+    { "source": "/casestudy", "destination": "/nikhil-vemuri-casestudy-v2.html" },
+    { "source": "/ft-lab", "destination": "/ft-lab-redesign.html" },
+    { "source": "/tank-it-or-bank-it", "destination": "/tank-it-or-bank-it-case-study.html" },
+    { "source": "/resume", "destination": "/nikhil-vemuri-resume-latest-ats.html" }
+  ]
+}
