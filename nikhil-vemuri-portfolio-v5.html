@@ -653,15 +653,46 @@ img { display:block; }
 /* ===========================================
    RESUME NOTE
 =========================================== */
-.resume-note {
-  font-family: var(--f-mono);
-  font-size: 10px;
-  color: var(--ink-3);
-  letter-spacing: .07em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-  margin-top: 24px;
+.resume-drop {
+  position: relative;
+  display: inline-block;
 }
+.resume-drop-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--f-mono); font-size: 10.5px; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-2); border: 1px solid var(--rule-mid);
+  background: var(--card); padding: 13px 26px; border-radius: 3px;
+  cursor: pointer; transition: all .2s;
+}
+.resume-drop-btn:hover { color: var(--ink); border-color: var(--gold-rule); background: var(--gold-dim); }
+.resume-drop-btn .arr { font-size: 9px; transition: transform .2s; }
+.resume-drop.open .resume-drop-btn .arr { transform: rotate(180deg); }
+.resume-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--card);
+  border: 1px solid var(--rule-mid);
+  border-radius: 4px;
+  overflow: hidden;
+  min-width: 180px;
+  z-index: 10;
+  box-shadow: var(--glow);
+}
+.resume-drop.open .resume-menu { display: block; }
+.resume-menu a {
+  display: block;
+  font-family: var(--f-mono); font-size: 10.5px; font-weight: 500;
+  letter-spacing: .07em; text-transform: uppercase;
+  color: var(--ink-2); padding: 12px 20px;
+  transition: background .15s, color .15s;
+  border-bottom: 1px solid var(--rule);
+}
+.resume-menu a:last-child { border-bottom: none; }
+.resume-menu a:hover { background: var(--gold-dim); color: var(--ink); }
 
 /* ===========================================
    CONTACT
@@ -1392,9 +1423,15 @@ img { display:block; }
       <div class="ct-links">
         <a href="https://linkedin.com/in/nikhilvemuri94" target="_blank" rel="noopener" class="ct-btn pri">&#8599; Connect on LinkedIn</a>
         <a href="https://behance.net/Ash_Nikks" target="_blank" rel="noopener" class="ct-btn sec">View Behance</a>
-        <p class="resume-note">Resume &#8212; choose your format:</p>
-        <a href="nikhil-vemuri-resume-latest-ats.html" target="_blank" class="ct-btn sec">ATS Resume</a>
-        <a href="nikhil-vemuri-resume-designed.html" target="_blank" class="ct-btn sec">Designed Resume</a>
+        <div class="resume-drop" id="resumeDrop">
+          <button class="resume-drop-btn" onclick="document.getElementById('resumeDrop').classList.toggle('open')" aria-haspopup="true">
+            &#8595; Resume <span class="arr">&#9660;</span>
+          </button>
+          <div class="resume-menu">
+            <a href="nikhil-vemuri-resume-latest-ats.html" target="_blank">ATS Resume</a>
+            <a href="nikhil-vemuri-resume-designed.html" target="_blank">Designed Resume</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1488,6 +1525,12 @@ const nobs = new IntersectionObserver(es => {
   });
 },{threshold:.4});
 secs.forEach(s => nobs.observe(s));
+
+// Close resume dropdown when clicking outside
+document.addEventListener('click', e => {
+  const drop = document.getElementById('resumeDrop');
+  if (drop && !drop.contains(e.target)) drop.classList.remove('open');
+});
 </script>
 </body>
 </html>
