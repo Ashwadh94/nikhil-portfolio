@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikhil Vemuri — Senior UX Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ── TOKENS ── */
+:root {
+  --blue:      #2563EB;
+  --blue-dark: #1D4ED8;
+  --blue-lt:   #EFF6FF;
+  --blue-mid:  #DBEAFE;
+  --ink:       #0F172A;
+  --ink-2:     #334155;
+  --ink-3:     #64748B;
+  --ink-4:     #94A3B8;
+  --rule:      #E2E8F0;
+  --rule-2:    #CBD5E1;
+  --bg:        #FFFFFF;
+  --sidebar:   #F8FAFC;
+  --f-d:       'Instrument Serif', Georgia, serif;
+  --f-b:       'DM Sans', system-ui, sans-serif;
+  --f-m:       'DM Mono', monospace;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 15px; }
+body {
+  font-family: var(--f-b);
+  background: #E2E8F0;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+/* ── PRINT BAR ── */
+.print-bar {
+  max-width: 860px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.print-label {
+  font-family: var(--f-m);
+  font-size: 11px;
+  color: #64748B;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.print-actions { display: flex; gap: 10px; }
+.btn-print {
+  font-family: var(--f-m);
+  font-size: 11px; font-weight: 500;
+  letter-spacing: .07em; text-transform: uppercase;
+  color: #FFFFFF; background: var(--blue);
+  border: none; padding: 9px 20px;
+  border-radius: 4px; cursor: pointer;
+  transition: background .2s;
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.btn-print:hover { background: var(--blue-dark); }
+.btn-ats {
+  font-family: var(--f-m);
+  font-size: 11px; font-weight: 500;
+  letter-spacing: .07em; text-transform: uppercase;
+  color: #475569;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  padding: 9px 20px; border-radius: 4px;
+  cursor: pointer; transition: border-color .2s;
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.btn-ats:hover { border-color: var(--blue); color: var(--blue); }
+
+/* ── PAPER ── */
+.paper {
+  max-width: 860px;
+  margin: 0 auto;
+  background: var(--bg);
+  box-shadow: 0 4px 32px rgba(15,23,42,.14), 0 0 0 1px rgba(15,23,42,.06);
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 1100px;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  background: var(--sidebar);
+  border-right: 1px solid var(--rule);
+  padding: 44px 28px 44px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Photo */
+.photo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+.photo {
+  width: 88px; height: 88px;
+  border-radius: 4px;
+  object-fit: cover;
+  display: block;
+  border: 2px solid var(--rule-2);
+  margin-bottom: 18px;
+}
+
+/* Name block in sidebar */
+.s-name {
+  font-family: var(--f-d);
+  font-size: 22px; font-weight: 400;
+  color: var(--ink); line-height: 1.15;
+  margin-bottom: 5px;
+}
+.s-title {
+  font-size: 11.5px; font-weight: 400;
+  color: var(--blue);
+  line-height: 1.5; margin-bottom: 14px;
+}
+.s-loc {
+  font-family: var(--f-m);
+  font-size: 10px; color: var(--ink-3);
+  letter-spacing: .05em; margin-bottom: 14px;
+}
+.contact-list {
+  display: flex; flex-direction: column; gap: 6px;
+  list-style: none;
+}
+.contact-list li {
+  font-family: var(--f-m);
+  font-size: 10px; color: var(--ink-3);
+  letter-spacing: .03em;
+  display: flex; align-items: center; gap: 7px;
+}
+.contact-list a {
+  color: var(--blue);
+  text-decoration: none;
+  transition: opacity .15s;
+}
+.contact-list a:hover { opacity: .75; }
+.c-icon {
+  width: 14px; height: 14px;
+  flex-shrink: 0; color: var(--ink-4);
+}
+
+/* Sidebar section */
+.s-sec { display: flex; flex-direction: column; gap: 10px; }
+.s-sec-head {
+  font-family: var(--f-m);
+  font-size: 9.5px; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--blue);
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--blue-mid);
+  margin-bottom: 2px;
+}
+
+/* Skills */
+.skill-group { margin-bottom: 10px; }
+.skill-group-name {
+  font-size: 11px; font-weight: 600;
+  color: var(--ink-2); margin-bottom: 4px;
+}
+.skill-tags {
+  display: flex; flex-wrap: wrap; gap: 4px;
+}
+.sk {
+  font-family: var(--f-m);
+  font-size: 9.5px; color: var(--ink-3);
+  background: var(--blue-lt);
+  border: 1px solid var(--blue-mid);
+  padding: 2px 7px; border-radius: 2px;
+  letter-spacing: .03em;
+}
+
+/* Sidebar certs */
+.s-cert { margin-bottom: 8px; }
+.s-cert-name {
+  font-size: 11.5px; font-weight: 500; color: var(--ink-2);
+  line-height: 1.35; margin-bottom: 2px;
+}
+.s-cert-issuer {
+  font-family: var(--f-m);
+  font-size: 9.5px; color: var(--ink-3); letter-spacing: .03em;
+}
+
+/* Awards */
+.s-award { margin-bottom: 8px; }
+.s-award-name {
+  font-size: 11.5px; font-weight: 500; color: var(--ink-2);
+  line-height: 1.35; margin-bottom: 2px;
+}
+.s-award-meta {
+  font-family: var(--f-m);
+  font-size: 9.5px; color: var(--ink-3); letter-spacing: .03em;
+}
+
+/* Edu */
+.s-edu { margin-bottom: 8px; }
+.s-edu-deg {
+  font-size: 11.5px; font-weight: 500; color: var(--ink-2); line-height:1.35; margin-bottom:2px;
+}
+.s-edu-school {
+  font-family: var(--f-m); font-size: 9.5px; color: var(--ink-3); letter-spacing:.03em;
+}
+
+/* ── MAIN ── */
+.main {
+  padding: 44px 40px 44px 40px;
+  display: flex; flex-direction: column; gap: 32px;
+}
+
+/* Main header */
+.m-header {
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--rule);
+  position: relative;
+}
+.m-header::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 48px; height: 2px;
+  background: var(--blue);
+}
+.m-name {
+  font-family: var(--f-d);
+  font-size: 38px; font-weight: 400;
+  line-height: 1.0; letter-spacing: -.02em;
+  color: var(--ink); margin-bottom: 6px;
+}
+.m-name em { font-style: italic; color: var(--blue); }
+.m-role {
+  font-size: 13px; font-weight: 400;
+  color: var(--ink-3); letter-spacing: .01em;
+  line-height: 1.5;
+}
+
+/* Section head */
+.m-sec-head {
+  font-family: var(--f-m);
+  font-size: 9.5px; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--blue);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 16px;
+  position: relative;
+}
+.m-sec-head::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0;
+  width: 24px; height: 1px;
+  background: var(--blue);
+}
+
+/* Summary */
+.m-summary {
+  font-size: 12.5px; font-weight: 300;
+  color: var(--ink-2); line-height: 1.75;
+}
+.m-summary strong {
+  font-weight: 600; color: var(--ink);
+}
+
+/* Experience */
+.exp-item { margin-bottom: 22px; position: relative; }
+.exp-item:last-child { margin-bottom: 0; }
+
+.exp-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 3px;
+}
+.exp-title {
+  font-size: 13.5px; font-weight: 600;
+  color: var(--ink); line-height: 1.3;
+}
+.exp-dates {
+  font-family: var(--f-m);
+  font-size: 10px; color: var(--blue);
+  letter-spacing: .04em; white-space: nowrap;
+  flex-shrink: 0; margin-top: 2px;
+  background: var(--blue-lt);
+  padding: 2px 8px; border-radius: 2px;
+}
+.exp-co {
+  font-size: 11.5px; font-weight: 400;
+  color: var(--ink-3); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 7px;
+}
+.exp-co-name {
+  font-weight: 600; color: var(--ink-2);
+}
+.exp-co-sep {
+  color: var(--rule-2); font-size: 10px;
+}
+
+.exp-bullets {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 5px;
+}
+.exp-bullets li {
+  font-size: 12px; font-weight: 300;
+  color: var(--ink-2); line-height: 1.65;
+  padding-left: 16px; position: relative;
+}
+.exp-bullets li::before {
+  content: '';
+  position: absolute; left: 0; top: 8px;
+  width: 5px; height: 1.5px;
+  background: var(--blue);
+}
+.exp-bullets li strong {
+  font-weight: 600; color: var(--ink);
+}
+
+/* Divider between roles at same company */
+.exp-divider {
+  height: 1px; background: var(--rule);
+  margin: 14px 0;
+}
+
+/* ── PRINT ── */
+@media print {
+  body { background: #fff; padding: 0; }
+  .print-bar { display: none; }
+  .paper {
+    max-width: 100%;
+    box-shadow: none;
+    min-height: auto;
+  }
+  .sidebar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .sk { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .exp-dates { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { size: A4; margin: 0; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  body { padding: 0; }
+  .paper { grid-template-columns: 1fr; }
+  .sidebar { border-right: none; border-bottom: 1px solid var(--rule); padding: 32px 24px; }
+  .main { padding: 32px 24px; }
+  .print-bar { padding: 16px; margin-bottom: 0; }
+  .print-actions { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- PRINT BAR -->
+<div class="print-bar">
+  <span class="print-label">Designed Resume &nbsp;·&nbsp; Nikhil Vemuri</span>
+  <div class="print-actions">
+    <button class="btn-print" onclick="window.print()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>
+      </svg>
+      Print / Save PDF
+    </button>
+    <a href="nikhil-vemuri-resume-latest-ats.html" target="_blank" class="btn-ats">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+      </svg>
+      ATS Version
+    </a>
+  </div>
+</div>
+
+<!-- PAPER -->
+<div class="paper">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+
+    <!-- Photo + Identity -->
+    <div class="photo-wrap">
+      <img
+        class="photo"
+        src="data:image/jpeg;base64,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"
+        alt="Nikhil Vemuri">
+      <div class="s-name">Nikhil<br>Vemuri</div>
+      <div class="s-title">Senior UX Designer<br>Enterprise AI &amp; Design Systems</div>
+      <div class="s-loc">Hyderabad, India</div>
+      <ul class="contact-list">
+        <li>
+          <svg class="c-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <a href="https://linkedin.com/in/nikhilvemuri94" target="_blank">linkedin.com/in/nikhilvemuri94</a>
+        </li>
+        <li>
+          <svg class="c-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <a href="https://behance.net/Ash_Nikks" target="_blank">behance.net/Ash_Nikks</a>
+        </li>
+        <li>
+          <svg class="c-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Hyderabad, Telangana
+        </li>
+      </ul>
+    </div>
+
+    <!-- Skills -->
+    <div class="s-sec">
+      <div class="s-sec-head">Skills</div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">UX Practice</div>
+        <div class="skill-tags">
+          <span class="sk">User Research</span>
+          <span class="sk">Usability Testing</span>
+          <span class="sk">Information Architecture</span>
+          <span class="sk">Heuristic Evaluation</span>
+          <span class="sk">UX Strategy</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Design</div>
+        <div class="skill-tags">
+          <span class="sk">UI Design</span>
+          <span class="sk">Design Systems</span>
+          <span class="sk">Interaction Design</span>
+          <span class="sk">Prototyping</span>
+          <span class="sk">Accessibility (WCAG 2.1)</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Platforms</div>
+        <div class="skill-tags">
+          <span class="sk">Enterprise / B2B</span>
+          <span class="sk">AI Products</span>
+          <span class="sk">DevOps</span>
+          <span class="sk">Salesforce SLDS</span>
+          <span class="sk">Healthcare UX</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Tools</div>
+        <div class="skill-tags">
+          <span class="sk">Figma</span>
+          <span class="sk">Adobe Suite</span>
+          <span class="sk">HTML5 / CSS3</span>
+          <span class="sk">Sketch</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certifications -->
+    <div class="s-sec">
+      <div class="s-sec-head">Certifications</div>
+
+      <div class="s-cert">
+        <div class="s-cert-name">AI for Human-Centered Design — Primer</div>
+        <div class="s-cert-issuer">Human Factors International &nbsp;·&nbsp; 2026</div>
+      </div>
+      <div class="s-cert">
+        <div class="s-cert-name">Web Design Accessibility &mdash; WCAG 2.1</div>
+        <div class="s-cert-issuer">Udemy &nbsp;·&nbsp; Apr 2026</div>
+      </div>
+      <div class="s-cert">
+        <div class="s-cert-name">GenAI Fundamentals for UX Designers</div>
+        <div class="s-cert-issuer">Udemy &nbsp;·&nbsp; Dec 2025</div>
+      </div>
+      <div class="s-cert">
+        <div class="s-cert-name">Human-Computer Interaction</div>
+        <div class="s-cert-issuer">Interaction Design Foundation &nbsp;·&nbsp; Jan 2020</div>
+      </div>
+      <div class="s-cert">
+        <div class="s-cert-name">Usability for the Web</div>
+        <div class="s-cert-issuer">Interaction Design Foundation &nbsp;·&nbsp; Jan 2020</div>
+      </div>
+    </div>
+
+    <!-- Awards -->
+    <div class="s-sec">
+      <div class="s-sec-head">Awards</div>
+
+      <div class="s-award">
+        <div class="s-award-name">Hermes International Design Award</div>
+        <div class="s-award-meta">Gold Category &nbsp;·&nbsp; 2018</div>
+      </div>
+      <div class="s-award">
+        <div class="s-award-name">You&rsquo;ve Got Spark Award</div>
+        <div class="s-award-meta">PurpleTalk &nbsp;·&nbsp; 2015 &amp; 2017</div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="s-sec">
+      <div class="s-sec-head">Education</div>
+
+      <div class="s-edu">
+        <div class="s-edu-deg">B.Tech, Information Technology</div>
+        <div class="s-edu-school">JNTU Hyderabad &nbsp;·&nbsp; 2011&ndash;2015</div>
+      </div>
+      <div class="s-edu">
+        <div class="s-edu-deg">Intermediate (M.P.C.)</div>
+        <div class="s-edu-school">Sri Chaitanya College &nbsp;·&nbsp; 2009&ndash;2011</div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <main class="main">
+
+    <!-- Header -->
+    <div class="m-header">
+      <div class="m-name">Nikhil <em>Vemuri</em></div>
+      <div class="m-role">
+        Senior UX Designer &nbsp;&middot;&nbsp; Enterprise AI &nbsp;&middot;&nbsp; Design Systems &nbsp;&middot;&nbsp; DevOps Platforms &nbsp;&middot;&nbsp; Accessibility
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <section>
+      <div class="m-sec-head">Professional Summary</div>
+      <p class="m-summary">
+        Senior UX and Interactive Designer with <strong>10+ years of experience</strong> designing complex digital products across enterprise AI, DevOps, analytics, healthcare, and change management environments. Deep expertise in <strong>design systems, WCAG 2.1 accessibility compliance</strong>, and cross-functional collaboration across global teams. Healthcare domain experience spans <strong>Tenet Healthcare, UnitedHealth Group (UHG), and Optum</strong>. Award-winning designer (Hermes International Gold, 2018) with a consistent record of translating complex requirements into engaging, accessible, and scalable interactive experiences.
+      </p>
+    </section>
+
+    <!-- Experience -->
+    <section>
+      <div class="m-sec-head">Professional Experience</div>
+
+      <!-- OpenText -->
+      <div class="exp-item">
+        <div class="exp-top">
+          <div class="exp-title">Senior UX Designer</div>
+          <span class="exp-dates">Nov 2023 &ndash; Present</span>
+        </div>
+        <div class="exp-co">
+          <span class="exp-co-name">OpenText</span>
+          <span class="exp-co-sep">/</span>
+          <span>Hyderabad &middot; Enterprise DevOps &amp; AI Products</span>
+        </div>
+        <ul class="exp-bullets">
+          <li><strong>Led end-to-end redesign</strong> of a legacy enterprise testing platform &mdash; restructuring IA, interaction flows, and component architecture to reduce onboarding friction for QA and DevOps teams globally.</li>
+          <li>Drove UX strategy for an <strong>AI-powered automated testing suite</strong> &mdash; making complex ML workflows intuitive for non-technical stakeholders; SUS improved from 52 to 86.</li>
+          <li>Built and scaled a <strong>design system with reusable component libraries</strong> and design tokens, accelerating design-to-dev velocity across product modules.</li>
+          <li>Conducted <strong>WCAG 2.1 AA accessibility evaluations</strong> across data-heavy dashboards; defined accessible interaction patterns embedded into the design system.</li>
+          <li>Facilitated AI-driven UX ideation workshops (Tank it or Bank it) to validate product concepts with cross-functional stakeholders across product, engineering, and QA.</li>
+        </ul>
+      </div>
+
+      <!-- Deloitte -->
+      <div class="exp-item">
+        <div class="exp-top">
+          <div class="exp-title">Designer 2 &mdash; UX / UI</div>
+          <span class="exp-dates">Apr 2020 &ndash; Aug 2023</span>
+        </div>
+        <div class="exp-co">
+          <span class="exp-co-name">Deloitte India</span>
+          <span class="exp-co-sep">/</span>
+          <span>Enterprise SaaS &middot; Life Sciences &amp; Technology Clients</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Led UX and interactive design for <strong>ChangeScout</strong> &mdash; Deloitte&rsquo;s proprietary change management SaaS platform, creating modular components and multi-step workflows within strict brand frameworks.</li>
+          <li>Designed complex <strong>interactive experiences within Salesforce Lightning (SLDS)</strong> &mdash; balancing platform constraints with intuitive patterns for global enterprise deployments.</li>
+          <li>Built and maintained a <strong>component-based design system</strong> with documented interaction states, motion cues, and reusable assets across cross-functional teams.</li>
+          <li>Ran usability testing and stakeholder research sessions; iterated rapidly across content formats in an Agile delivery environment.</li>
+        </ul>
+      </div>
+
+      <!-- InRhythm -->
+      <div class="exp-item">
+        <div class="exp-top">
+          <div class="exp-title">UI / UX Designer 2</div>
+          <span class="exp-dates">Sep 2018 &ndash; Apr 2020</span>
+        </div>
+        <div class="exp-co">
+          <span class="exp-co-name">InRhythm Solutions</span>
+          <span class="exp-co-sep">/</span>
+          <span>Enterprise Analytics &amp; Mobile Products</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Led UX design for <strong>MobileMetrics</strong> &mdash; an enterprise analytics product with data-heavy interactive dashboards designed for both technical and non-technical stakeholders.</li>
+          <li>Created <strong>animated prototypes and responsive layouts</strong> adaptable across device breakpoints; collaborated daily with developers in Agile sprints for accurate implementation.</li>
+        </ul>
+      </div>
+
+      <!-- PurpleTalk -->
+      <div class="exp-item">
+        <div class="exp-top">
+          <div class="exp-title">UI / UX Designer &rarr; Intern</div>
+          <span class="exp-dates">Dec 2014 &ndash; Aug 2018</span>
+        </div>
+        <div class="exp-co">
+          <span class="exp-co-name">PurpleTalk</span>
+          <span class="exp-co-sep">/</span>
+          <span>Healthcare, IoT &amp; Mobile &middot; Hyderabad</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Designed <strong>HIPAA-compliant digital applications</strong> for <strong>Tenet Healthcare, UnitedHealth Group (UHG), and Optum</strong> &mdash; covering patient portals, clinical workflows, and provider-facing tools.</li>
+          <li>Designed an IoT application combining <strong>device interaction design and immersive visual storytelling</strong> &mdash; won the <strong>Hermes International Design Award 2018 (Gold Category)</strong>.</li>
+          <li>Delivered end-to-end experiences across mobile and web products for multiple client verticals; applied <strong>Section 508 compliance</strong> across all healthcare deliverables.</li>
+          <li>Built fluency in HTML5 and CSS3, enabling tighter developer collaboration and faster, accurate design handoffs.</li>
+        </ul>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>
