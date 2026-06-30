@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,25 +43,25 @@
 }
 
 [data-theme="light"] {
-  --page:      #F2EFE8;
-  --surf:      #FDFCF8;
+  --page:      #FFFFFF;
+  --surf:      #F8FAFC;
   --card:      #FFFFFF;
-  --card-h:    #FAFAF6;
-  --sub:       #ECEAE3;
-  --rule:      rgba(0,0,0,.07);
-  --rule-mid:  rgba(0,0,0,.13);
-  --ink:       #1A1916;
-  --ink-2:     #6A6760;
-  --ink-3:     #AAA7A0;
-  --inv:       #FDFCF8;
-  --gold:      #9A6E0A;
-  --gold-dim:  rgba(154,110,10,.08);
-  --gold-rule: rgba(154,110,10,.18);
-  --tag-bg:    rgba(0,0,0,.05);
-  --tag-ink:   #7A7770;
-  --nav-bg:    rgba(242,239,232,.9);
-  --glow:      0 8px 28px rgba(0,0,0,.08);
-  --glow-h:    0 12px 36px rgba(0,0,0,.13), 0 0 0 1px rgba(154,110,10,.15);
+  --card-h:    #F1F5F9;
+  --sub:       #E2E8F0;
+  --rule:      rgba(15, 23, 42, 0.08);
+  --rule-mid:  rgba(15, 23, 42, 0.15);
+  --ink:       #0F172A;
+  --ink-2:     #475569;
+  --ink-3:     #94A3B8;
+  --inv:       #FFFFFF;
+  --gold:      #2563EB;
+  --gold-dim:  rgba(37, 99, 235, 0.08);
+  --gold-rule: rgba(37, 99, 235, 0.2);
+  --tag-bg:    rgba(37, 99, 235, 0.06);
+  --tag-ink:   #3B5EAD;
+  --nav-bg:    rgba(255, 255, 255, 0.9);
+  --glow:      0 4px 24px rgba(15, 23, 42, 0.08);
+  --glow-h:    0 8px 32px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(37, 99, 235, 0.18);
 }
 
 /* ===========================================
@@ -394,56 +394,94 @@ img { display:block; }
 =========================================== */
 .pgrid {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  background: transparent;
+  border: none;
 }
 
-.cat-row {
-  grid-column: 1/-1;
-  background: var(--page);
-  padding: 20px 24px 10px;
-  display:flex; align-items:center; gap:14px;
-}
-.cat-row:first-child { padding-top:0; }
-.cat-name {
-  font-family: var(--f-mono);
-  font-size:10px; font-weight:500;
-  color: var(--ink-3); letter-spacing:.1em; text-transform:uppercase;
-}
-.cat-line { flex:1; height:1px; background:var(--rule); }
-.cat-count {
-  font-family: var(--f-mono);
-  font-size:10px; color: var(--ink-3); letter-spacing:.06em;
-}
-
-/* Card */
 .pc {
   background: var(--card);
-  display:flex; flex-direction:column;
-  cursor:pointer;
-  transition: background .18s;
-  position:relative;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
-.pc:hover { background: var(--card-h); }
-.pc.span2 { grid-column:span 2; flex-direction:row; }
 
-/* Thumb */
+.pc:hover {
+  background: var(--card-h);
+  border-color: var(--gold-rule);
+  transform: translateY(-5px);
+  box-shadow: var(--glow-h);
+}
+
+.pc.span2 {
+  grid-column: span 2;
+  flex-direction: row;
+}
+
+/* Thumbnail */
 .th {
-  width:100%; overflow:hidden;
-  background:var(--sub);
-  position:relative;
-  aspect-ratio:16/10;
-  flex-shrink:0;
+  width: 100%;
+  overflow: hidden;
+  background: var(--sub);
+  position: relative;
+  aspect-ratio: 16 / 10;
+  flex-shrink: 0;
 }
-.pc.span2 .th { width:46%; aspect-ratio:unset; height:100%; }
+.pc.span2 .th {
+  width: 44%;
+  aspect-ratio: unset;
+  height: 100%;
+}
 .th img {
-  width:100%; height:100%;
-  object-fit:cover; display:block;
-  transition:transform .4s var(--ease), opacity .2s;
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.4s ease, opacity 0.25s;
 }
-.pc:hover .th img { transform:scale(1.025); opacity:.9; }
+.pc:hover .th img {
+  transform: scale(1.04);
+  opacity: 0.88;
+}
+
+/* Card body */
+.pb {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Footer divider */
+.pfoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+}
+
+/* Arrow animation on hover */
+.parr {
+  width: 32px; height: 32px;
+  border: 1px solid var(--rule-mid);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; color: var(--ink-3);
+  transition: all 0.22s ease;
+  flex-shrink: 0;
+}
+.pc:hover .parr {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--inv);
+  transform: rotate(45deg);
+}
 .th-fb {
   position:absolute; inset:0;
   display:flex; align-items:center; justify-content:center;
@@ -465,8 +503,6 @@ img { display:block; }
   z-index:2;
 }
 
-/* Card body */
-.pb { padding:22px 22px 20px; flex:1; display:flex; flex-direction:column; }
 .pm { display:flex; align-items:center; gap:8px; margin-bottom:12px; }
 .pt {
   font-family:var(--f-mono); font-size:9.5px; font-weight:500;
@@ -494,20 +530,9 @@ img { display:block; }
   color:var(--tag-ink); background:var(--tag-bg);
   padding:2px 7px; border-radius:2px;
 }
-.pfoot {
-  display:flex; align-items:center; justify-content:space-between;
-  margin-top:auto; padding-top:14px;
-  border-top:1px solid var(--rule);
-}
 .pco { font-family:var(--f-mono); font-size:9.5px; color:var(--ink-3); letter-spacing:.04em; }
-.parr {
-  font-family:var(--f-mono); font-size:11px; color:var(--ink-3);
-  transition:color .18s, transform .18s;
-}
-.pc:hover .parr { color:var(--gold); transform:translateX(3px); }
 
 .pc.hide { display:none!important; }
-.cat-row.hide { display:none!important; }
 
 /* ===========================================
    EXPERIENCE
@@ -626,6 +651,19 @@ img { display:block; }
 }
 
 /* ===========================================
+   RESUME NOTE
+=========================================== */
+.resume-note {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--ink-3);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  margin-top: 24px;
+}
+
+/* ===========================================
    CONTACT
 =========================================== */
 .contact-inner {
@@ -673,9 +711,9 @@ img { display:block; }
 /* ===========================================
    RESPONSIVE
 =========================================== */
-@media(max-width:1080px){
-  .pgrid { grid-template-columns:repeat(2,1fr); }
-  .pc.span2 { grid-column:span 2; }
+@media (max-width: 1080px) {
+  .pgrid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .pc.span2 { grid-column: span 2; }
   .sk-grid { grid-template-columns:repeat(2,1fr); }
   .acc-grid { grid-template-columns:repeat(2,1fr); }
 }
@@ -687,15 +725,17 @@ img { display:block; }
   .hero-r { order:-1; }
   .photo-outer { width:180px; height:220px; }
   .sec { padding:68px 24px; }
-  .pgrid { grid-template-columns:1fr; }
-  .pc.span2 { grid-column:span 1; flex-direction:column; }
-  .pc.span2 .th { width:100%; aspect-ratio:16/10; height:auto; }
   .tl-item { grid-template-columns:1fr; gap:0; }
   .tl-l { text-align:left; padding-right:0; padding-bottom:12px; border-bottom:1px solid var(--rule); margin-bottom:20px; }
   .tl-spine { display:none; }
   .sk-grid { grid-template-columns:1fr 1fr; }
   .acc-grid { grid-template-columns:1fr; }
   .foot { padding:20px 24px; flex-direction:column; gap:8px; text-align:center; }
+}
+@media (max-width: 680px) {
+  .pgrid { grid-template-columns: 1fr; gap: 14px; }
+  .pc.span2 { grid-column: span 1; flex-direction: column; }
+  .pc.span2 .th { width: 100%; aspect-ratio: 16/10; height: auto; }
 }
 @media(max-width:480px){
   .stats { grid-template-columns:1fr; }
@@ -771,7 +811,7 @@ img { display:block; }
     <div class="hero-btns">
       <a href="https://linkedin.com/in/nikhilvemuri94" target="_blank" rel="noopener" class="hbtn">&#8599; LinkedIn</a>
       <a href="https://behance.net/Ash_Nikks" target="_blank" rel="noopener" class="hbtn">&#8599; Behance</a>
-      <a href="nikhil-vemuri-resume.html" target="_blank" class="hbtn">&#8595; Resume</a>
+      <a href="nikhil-vemuri-resume-latest-ats.html" target="_blank" class="hbtn">&#8595; Resume</a>
     </div>
   </div>
 
@@ -809,13 +849,6 @@ img { display:block; }
     </div>
 
     <div class="pgrid" id="pg">
-
-      <!-- ── ENTERPRISE ── -->
-      <div class="cat-row" data-cat="enterprise">
-        <span class="cat-name">Enterprise / B2B</span>
-        <span class="cat-line"></span>
-        <span class="cat-count">7 projects</span>
-      </div>
 
       <!-- 1. OpenText AI Testing — FEATURED WIDE -->
       <article class="pc span2 r" data-cat="enterprise"
@@ -878,24 +911,26 @@ img { display:block; }
         </div>
       </article>
 
-      <!-- 3. Intelligence Engine -->
-      <article class="pc r d2" data-cat="enterprise"
-        onclick="go('https://www.behance.net/gallery/175800701/Intelligence-Engine-A-Case-Study')"
-        role="button" tabindex="0">
+      <!-- 3. Tank it or Bank it -->
+      <article class="pc r d2" data-cat="misc"
+        onclick="go('tank-it-or-bank-it-case-study.html')"
+        role="button" tabindex="0"
+        aria-label="View Tank it or Bank it case study">
         <div class="th">
           <img
             src="https://mir-s3-cdn-cf.behance.net/projects/404/2dc2fc88605271.Y3JvcCwxNDAwLDEwOTUsMCww.png"
             alt="Intelligence Engine"
             loading="lazy"
             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="th-fb" style="display:none"><span>Intelligence<br>Engine</span></div>
+          <div class="th-fb" style="display:none"><span>Tank it<br>or Bank it</span></div>
         </div>
         <div class="pb">
           <div class="pm"><span class="pt">Case Study</span><span class="py">2023</span></div>
           <h3 class="ptitle">Intelligence Engine</h3>
           <p class="pdesc">Designing a contextual AI engine that surfaces enterprise insights at the right moment &#8212; reducing cognitive overhead in complex data environments.</p>
           <div class="ptags">
-            <span class="ptag">AI</span><span class="ptag">Enterprise</span><span class="ptag">Data UX</span>
+            <span class="ptag">Workshop Design</span><span class="ptag">UX Strategy</span>
+            <span class="ptag">Facilitation</span><span class="ptag">Research</span>
           </div>
           <div class="pfoot">
             <span class="pco">Deloitte &nbsp;&#183;&nbsp; 2023</span>
@@ -904,8 +939,34 @@ img { display:block; }
         </div>
       </article>
 
-      <!-- 4. Reporting & BI -->
+      <!-- 4. Intelligence Engine -->
       <article class="pc r" data-cat="enterprise"
+        onclick="go('https://www.behance.net/gallery/175800701/Intelligence-Engine-A-Case-Study')"
+        role="button" tabindex="0">
+        <div class="th">
+          <img
+            src="https://mir-s3-cdn-cf.behance.net/projects/404/c19cc3175800701.Y3JvcCwxMDgwLDg0NCwwLDEx.png"
+            alt="Intelligence Engine"
+            loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="th-fb" style="display:none"><span>Intelligence<br>Engine</span></div>
+        </div>
+        <div class="pb">
+          <div class="pm"><span class="pt">Case Study</span><span class="py">2024</span></div>
+          <h3 class="ptitle">Intelligence Engine</h3>
+          <p class="pdesc">Designing a contextual AI engine that surfaces enterprise insights at the right moment &#8212; reducing cognitive overhead in complex data environments.</p>
+          <div class="ptags">
+            <span class="ptag">AI</span><span class="ptag">Enterprise</span><span class="ptag">Data UX</span>
+          </div>
+          <div class="pfoot">
+            <span class="pco">Deloitte &nbsp;&#183;&nbsp; 2024</span>
+            <span class="parr">&#8599;</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. Reporting & BI -->
+      <article class="pc r d1" data-cat="enterprise"
         onclick="go('https://www.behance.net/gallery/88605271/Reporting-and-BI-tool')"
         role="button" tabindex="0">
         <div class="th">
@@ -925,32 +986,6 @@ img { display:block; }
           </div>
           <div class="pfoot">
             <span class="pco">InRhythm &nbsp;&#183;&nbsp; 2019</span>
-            <span class="parr">&#8599;</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- 5. Sales App -->
-      <article class="pc r d1" data-cat="enterprise"
-        onclick="go('https://www.behance.net/gallery/88600663/Sales-App')"
-        role="button" tabindex="0">
-        <div class="th">
-          <img
-            src="https://mir-s3-cdn-cf.behance.net/projects/404/9b2cf288600663.Y3JvcCwxMDgwLDg0NSwxMDQsOTg.jpg"
-            alt="Sales App"
-            loading="lazy"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="th-fb" style="display:none"><span>Sales App</span></div>
-        </div>
-        <div class="pb">
-          <div class="pm"><span class="pt">UI Design</span><span class="py">2019</span></div>
-          <h3 class="ptitle">Sales App</h3>
-          <p class="pdesc">Mobile CRM companion for field sales reps &#8212; real-time pipeline visibility, one-tap lead logging, and an interface designed for high-pressure, on-the-go contexts.</p>
-          <div class="ptags">
-            <span class="ptag">CRM</span><span class="ptag">Sales</span><span class="ptag">Mobile</span>
-          </div>
-          <div class="pfoot">
-            <span class="pco">PurpleTalk &nbsp;&#183;&nbsp; 2019</span>
             <span class="parr">&#8599;</span>
           </div>
         </div>
@@ -982,14 +1017,7 @@ img { display:block; }
         </div>
       </article>
 
-      <!-- ── MOBILE ── -->
-      <div class="cat-row" data-cat="mobile">
-        <span class="cat-name">Mobile Applications</span>
-        <span class="cat-line"></span>
-        <span class="cat-count">2 projects</span>
-      </div>
-
-      <!-- 7. RideBuddies — WIDE -->
+      <!-- 7. RideBuddies — FEATURED WIDE -->
       <article class="pc span2 r" data-cat="mobile"
         onclick="go('https://www.behance.net/gallery/180644969/RideBuddies-A-Car-Pooling-App')"
         role="button" tabindex="0">
@@ -1016,7 +1044,7 @@ img { display:block; }
         </div>
       </article>
 
-      <!-- 8. HardWare -->
+      <!-- 8. HardWare IoT -->
       <article class="pc r d1" data-cat="mobile"
         onclick="go('https://www.behance.net/gallery/67918989/HardWare-Mobile-App-Design')"
         role="button" tabindex="0">
@@ -1264,6 +1292,39 @@ img { display:block; }
 
       <div class="acc-c r">
         <div class="acc-top">
+          <span class="acc-icon">HFI</span>
+          <div class="acc-title-wrap">
+            <div class="acc-name">AI for Human-Centered Design</div>
+            <div class="acc-meta">Primer &nbsp;&#183;&nbsp; HFI &nbsp;&#183;&nbsp; 2026</div>
+          </div>
+        </div>
+        <p class="acc-desc">Certification in applying AI responsibly within human-centered design frameworks &#8212; covering AI ethics, cognitive impact, and practical integration of AI capabilities into UX research and design workflows.</p>
+      </div>
+
+      <div class="acc-c r d1">
+        <div class="acc-top">
+          <span class="acc-icon">A11Y</span>
+          <div class="acc-title-wrap">
+            <div class="acc-name">Web Design Accessibility</div>
+            <div class="acc-meta">Udemy &nbsp;&#183;&nbsp; Apr 2026 &nbsp;&#183;&nbsp; WCAG 2.1</div>
+          </div>
+        </div>
+        <p class="acc-desc">Certification in web accessibility standards and inclusive design practices, directly applied to current WCAG 2.1 AA compliance work at OpenText.</p>
+      </div>
+
+      <div class="acc-c r d2">
+        <div class="acc-top">
+          <span class="acc-icon">AI</span>
+          <div class="acc-title-wrap">
+            <div class="acc-name">GenAI Fundamentals for UX Designers</div>
+            <div class="acc-meta">Udemy &nbsp;&#183;&nbsp; Dec 2025</div>
+          </div>
+        </div>
+        <p class="acc-desc">Certified in generative AI applications for UX design and user research &#8212; understanding AI capabilities, limitations, and how to design AI-native product experiences responsibly.</p>
+      </div>
+
+      <div class="acc-c r">
+        <div class="acc-top">
           <span class="acc-icon">IDF</span>
           <div class="acc-title-wrap">
             <div class="acc-name">Human-Computer Interaction</div>
@@ -1288,8 +1349,8 @@ img { display:block; }
         <div class="acc-top">
           <span class="acc-icon">&#8592;</span>
           <div class="acc-title-wrap">
-            <div class="acc-name">Hermes International Design Award</div>
-            <div class="acc-meta">Gold Category &nbsp;&#183;&nbsp; 2018</div>
+            <div class="acc-name">Hermes International Design Award &#8212; Gold</div>
+            <div class="acc-meta">2018</div>
           </div>
         </div>
         <p class="acc-desc">Recognised for outstanding UI/UX design on an IoT mobile application &#8212; one of design&#8217;s most prestigious international competitions with entries from 40+ countries.</p>
@@ -1297,37 +1358,27 @@ img { display:block; }
 
       <div class="acc-c r">
         <div class="acc-top">
-          <span class="acc-icon">A11Y</span>
-          <div class="acc-title-wrap">
-            <div class="acc-name">Web Design Accessibility</div>
-            <div class="acc-meta">Udemy &nbsp;&#183;&nbsp; Apr 2026 &nbsp;&#183;&nbsp; WCAG 2.1</div>
-          </div>
-        </div>
-        <p class="acc-desc">Certification in web accessibility standards and inclusive design practices, directly applied to current work driving WCAG 2.1 AA compliance at OpenText.</p>
-      </div>
-
-      <div class="acc-c r d1">
-        <div class="acc-top">
-          <span class="acc-icon">AI</span>
-          <div class="acc-title-wrap">
-            <div class="acc-name">GenAI Fundamentals for UX</div>
-            <div class="acc-meta">Udemy &nbsp;&#183;&nbsp; Dec 2025</div>
-          </div>
-        </div>
-        <p class="acc-desc">Certified in generative AI applications for UX design and user research &#8212; how to design AI-native product experiences responsibly and effectively.</p>
-      </div>
-
-      <div class="acc-c r d2">
-        <div class="acc-top">
           <span class="acc-icon">&#9733;</span>
           <div class="acc-title-wrap">
             <div class="acc-name">You&#8217;ve Got Spark Award</div>
             <div class="acc-meta">PurpleTalk &nbsp;&#183;&nbsp; Aug 2017</div>
           </div>
         </div>
-        <p class="acc-desc">Internal recognition for exceptional creative contribution and measurable impact on product design quality and team output.</p>
+        <p class="acc-desc">Recognition for exceptional creative contribution and measurable impact on product design quality and team output.</p>
       </div>
 
+      <div class="acc-c r d1">
+        <div class="acc-top">
+          <span class="acc-icon">&#9733;</span>
+          <div class="acc-title-wrap">
+            <div class="acc-name">You&#8217;ve Got Spark Award</div>
+            <div class="acc-meta">PurpleTalk &nbsp;&#183;&nbsp; 2015</div>
+          </div>
+        </div>
+        <p class="acc-desc">First recognition for outstanding creative work &#8212; received twice across tenure at PurpleTalk for consistent design excellence.</p>
+      </div>
+
+    </div>
     </div>
   </div>
 </section>
@@ -1341,7 +1392,9 @@ img { display:block; }
       <div class="ct-links">
         <a href="https://linkedin.com/in/nikhilvemuri94" target="_blank" rel="noopener" class="ct-btn pri">&#8599; Connect on LinkedIn</a>
         <a href="https://behance.net/Ash_Nikks" target="_blank" rel="noopener" class="ct-btn sec">View Behance</a>
-        <a href="nikhil-vemuri-resume.html" target="_blank" class="ct-btn sec">Download Resume</a>
+        <p class="resume-note">Resume &#8212; choose your format:</p>
+        <a href="nikhil-vemuri-resume-latest-ats.html" target="_blank" class="ct-btn sec">ATS Resume</a>
+        <a href="nikhil-vemuri-resume-designed.html" target="_blank" class="ct-btn sec">Designed Resume</a>
       </div>
     </div>
   </div>
@@ -1362,7 +1415,19 @@ document.getElementById('heroImg').src = 'data:image/jpeg;base64,/9j/4AAQSkZJRgA
 // Theme
 const html = document.documentElement;
 const btn = document.getElementById('themeBtn');
-html.setAttribute('data-theme', localStorage.getItem('nv-t') || 'dark');
+// Detect OS preference, fall back to light
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const saved = localStorage.getItem('nv-t');
+const theme = saved || (prefersDark ? 'dark' : 'light');
+document.documentElement.setAttribute('data-theme', theme);
+
+// Listen for OS preference changes (if no manual override saved)
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+  if (!localStorage.getItem('nv-t')) {
+    document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+  }
+});
+
 btn.addEventListener('click', () => {
   const n = html.getAttribute('data-theme')=='dark' ? 'light' : 'dark';
   html.setAttribute('data-theme', n);
